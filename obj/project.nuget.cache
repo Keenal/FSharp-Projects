@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "jLSizNE9Tp82tLpiEiKdJKFe3N1SMkphYEoyan3yuDFW4sWXDPAAWcYoK/Z03iq9Z3kROhixQEMVnNuQVPaLrw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Keena\\FirstIonideProject\\FirstIonideProject.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Keena\\.nuget\\packages\\fsharp.core\\4.7.2\\fsharp.core.4.7.2.nupkg.sha512"
+  ],
+  "logs": []
+}
