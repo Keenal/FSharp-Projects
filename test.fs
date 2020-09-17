@@ -13,5 +13,6 @@ let hellos =
     names
     |> Seq.map (fun x -> printfn "Mapped with %s" x; bigHello x)
     |> Seq.sort
+    |> Seq.iter (printfn "%s")
 
 hellos
