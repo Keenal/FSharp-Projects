@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Keena\\FirstIonideProject\\FirstIonideProject.fsproj": {}
+    "C:\\Users\\Keena\\Desktop\\Learning-FSharp\\FirstIonideProject.fsproj": {}
   },
   "projects": {
-    "C:\\Users\\Keena\\FirstIonideProject\\FirstIonideProject.fsproj": {
+    "C:\\Users\\Keena\\Desktop\\Learning-FSharp\\FirstIonideProject.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Keena\\FirstIonideProject\\FirstIonideProject.fsproj",
+        "projectUniqueName": "C:\\Users\\Keena\\Desktop\\Learning-FSharp\\FirstIonideProject.fsproj",
         "projectName": "FirstIonideProject",
-        "projectPath": "C:\\Users\\Keena\\FirstIonideProject\\FirstIonideProject.fsproj",
+        "projectPath": "C:\\Users\\Keena\\Desktop\\Learning-FSharp\\FirstIonideProject.fsproj",
         "packagesPath": "C:\\Users\\Keena\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Keena\\FirstIonideProject\\obj\\",
+        "outputPath": "C:\\Users\\Keena\\Desktop\\Learning-FSharp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Keena\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -31,6 +31,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Akka.FSharp": {
+              "target": "Package",
+              "version": "[*, )"
+            },
             "FSharp.Core": {
               "target": "Package",
               "version": "[4.7.2, )",

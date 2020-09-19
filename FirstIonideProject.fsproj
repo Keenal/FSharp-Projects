@@ -8,4 +8,7 @@
     <Compile Include="Model.fs" />
     <Compile Include="part1.fs" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Akka.FSharp" Version="1.4.10" />
+  </ItemGroup>
 </Project>
