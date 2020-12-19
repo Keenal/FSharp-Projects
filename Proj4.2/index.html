@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8" />
+<div>
+    <h1>Registration</h1>
+
+    <form id="registration">
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"><br>
+        <label for="username">UserID:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password">
+        
+
+        <input type="submit"></button>
+    </form>
+</div>
+
+
+<div>
+  <h1>Login</h1>
+
+  <form id="login">
+      <label for="username">UserID:</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="password">Password:</label><br>
+      <input type="text" id="password" name="password">
+      
+
+      <input type="submit"></button>
+  </form>
+</div>
+
+<div>
+  <h1>Search user tweets</h1>
+
+  <form id="searchUser">
+      <label for="usernameSearch">Search UserID:</label><br>
+      <input type="text" id="usernameSearch" name="usernameSearch"><br>
+
+      
+
+      <input type="submit"></button>
+  </form>
+</div>
+
+<div>
+  <h1>Search tweets via #</h1>
+
+  <form id="hashtagTweet">
+      <label for="hashtagTweet">Enter # to search</label><br>
+      <input type="text" id="hashtagTweet" name="hashtagTweet"><br>
+
+      
+
+      <input type="submit"></button>
+  </form>
+</div>
+
+<div>
+  <h1>UserID to follow</h1>
+
+  <form id="follow">
+      <label for="username">UserID:</label><br>
+      <input type="text" id="username" name="username"><br>
+
+      
+
+      <input type="submit"></button>
+  </form>
+</div>
+
+<div>
+  <h1>Tweet</h1>
+
+  <form id="tweet">
+      <label for="tweetField">Write your tweet:</label><br>
+      <input type="text" id="tweetField" name="tweetField"><br>
+
+      
+
+      <input type="submit"></button>
+  </form>
+</div>
+
+<div>
+  <h1>Retweet</h1>
+
+  <form id="retweet">
+      <label for="retweet">Enter Tweet ID to retweet</label><br>
+      <input type="text" id="retweet" name="retweet"><br>
+
+      
+
+      <input type="submit"></button>
+  </form>
+</div>
+
+
+<div>
+  <h1>Wall Feed</h1>
+
+  <button id="wallfeed" onclick="handleWallFeed()">Show Wall Feed</button>
+      
+</div>
+
+<div>
+  <h1>Logout</h1>
+
+  <button id="logout" onclick="handleLogout()">Logout</button>
+      
+</div>
+
+
+<script language="javascript" type="text/javascript">
+
+    let formRegistration=document.getElementById('registration');
+
+    formRegistration.addEventListener('submit',(event)=>{
+        event.preventDefault();
+        doSend(("register" + "+" + formRegistration.elements['fname'].value + "+" + formRegistration.elements['lname'].value + "+"  + formRegistration.elements['username'].value +"+"+ formRegistration.elements['password'].value))
+    });
+    
+    let formLogin=document.getElementById('login');
+
+    formLogin.addEventListener('submit',(event)=>{
+      event.preventDefault();
+      doSend("login"+ "+" + formLogin.elements['username'].value + "+" + formLogin.elements['password'].value)
+
+    })
+
+    let formSearchUser=document.getElementById('searchUser');
+
+    formSearchUser.addEventListener('submit',(event)=>{
+      event.preventDefault();
+      doSend("searchUser"+ "+" + formSearchUser.elements['usernameSearch'].value)
+    })
+
+    let formHashtagTweets=document.getElementById('hashtagTweet');
+
+    formHashtagTweets.addEventListener('submit',(event)=>{
+      event.preventDefault();
+      doSend("hashtagTweet"+ "+" + formHashtagTweets.elements['hashtagTweet'].value)
+    })
+
+    let formFollow=document.getElementById('follow');
+
+    formFollow.addEventListener('submit',(event)=>{
+      event.preventDefault();
+      doSend("follow"+ "+" + formFollow.elements['username'].value + "+" + formLogin.elements['username'].value)
+    })
+
+    let tweetField=document.getElementById('tweet');
+
+    tweetField.addEventListener('submit',(event)=>{
+      event.preventDefault();
+      doSend("tweet"+ "+" + formLogin.elements['username'].value + "+" + tweetField.elements['tweetField'].value)
+
+
+    })
+
+    let retweetField=document.getElementById('retweet');
+
+    retweetField.addEventListener('submit',(event)=>{
+      event.preventDefault();
+      doSend("rt"+ "+" + retweetField.elements['retweet'].value)
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+    function handleWallFeed()
+    {
+      writeToScreen("button pressed")
+      doSend("ShowWallfeed"+ "+" + formFollow.elements['username'].value)
+    }
+    function handleLogout()
+    {
+      writeToScreen("button pressed")
+      doSend("Logout")
+    }
+
+
+
+  var wsUri = "ws://localhost:8080/websocket";
+  var output;
+
+  function init()
+  {
+    output = document.getElementById("output");
+    testWebSocket();
+  }
+ 
+  function testWebSocket()
+  {
+    websocket = new WebSocket(wsUri);
+    websocket.onopen = function(evt) { onOpen(evt) };
+   // websocket.onclose = function(evt) { onClose(evt) };
+    websocket.onmessage = function(evt) { onMessage(evt) };
+   // websocket.onerror = function(evt) { onError(evt) };
+
+  }
+   
+  function onOpen(evt)
+  {
+    writeToScreen("USER CONNECTED TO TWITTER WEBSITE");
+    
+  }
+
+  function onClose(evt)
+  {
+    writeToScreen("DISCONNECTED");
+  }
+
+  function onMessage(evt)
+  {
+    writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
+    //websocket.close();
+  }
+
+  function onError(evt)
+  {
+    writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+  }
+
+  function doSend(message)
+  {
+    writeToScreen("SENT: " + message); 
+    websocket.send(message);
+  }
+
+  function writeToScreen(message)
+  {
+    var pre = document.createElement("p");
+    pre.style.wordWrap = "break-word";
+    pre.innerHTML = message;
+    output.appendChild(pre);
+  }
+
+  window.addEventListener("load", init, false);
+
+</script>
+
+<h2>WebSocket Test</h2>
+
+<div id="output"></div>
